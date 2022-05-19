@@ -10,6 +10,10 @@ const Home = () => {
   const [record, setRecord] = useState([]);
   const [id, setId] = useState(0);
 
+  const handleSelection = (value) => {
+    setId(value);
+  };
+
   useEffect(() => {
     (async () => {
       try {
@@ -27,7 +31,7 @@ const Home = () => {
     <div className={style.home}>
       <div className={style.rowSpace}>
         <h2> {get(record[id], "symbol")}</h2>
-        <Select value={id} className={style.select}>
+        <Select value={id} onChange={handleSelection} className={style.select}>
           {record.map((recordData, idx) => {
             return (
               <Option key={idx} value={idx}>
