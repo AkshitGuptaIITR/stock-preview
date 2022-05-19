@@ -1,0 +1,13 @@
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  position: fixed;
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FF5678;
+  background-color: white;
+}

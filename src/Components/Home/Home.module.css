@@ -1,0 +1,21 @@
+.home{
+  display: flex;
+  flex-direction: column;
+  padding: 80px 8%;
+}
+
+.home h2{
+  font-size: 1.5rem;
+}
+
+.rowSpace{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.select{
+  width: 200px !important;
+  display: flex !important;
+
+}
