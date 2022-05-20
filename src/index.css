@@ -3,7 +3,7 @@
 body {
   background-color: #F1F1F1 !important;
   margin: 0;
-  font-family: Montserrat;
+  font-family: Montserrat !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
