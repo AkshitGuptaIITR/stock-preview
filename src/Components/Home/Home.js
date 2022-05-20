@@ -6,7 +6,7 @@ import style from "./Home.module.css";
 import "antd/dist/antd.css";
 import Loader from "../../sharedComponents/Loader/Loader";
 import BarChart from "./BarChart/BarChart";
-import Chart from "./Chart/Chart";
+import ChartCom from "./Chart/ChartCom";
 const { Option } = Select;
 
 const Home = () => {
@@ -25,18 +25,14 @@ const Home = () => {
     },
   ]);
   const [currentChart, setCurrentChart] = useState("barChart");
-  const [chartInfo, setChartInfo] = useState([]);
 
   const handleSelection = (value) => {
-    let values = [];
     setId(value);
     if (value === record.length) {
-      // for(const i in record){
-      //   values[i]
-      // }
       setName("All Strike Prices");
+    } else if (value === record.length + 1) {
+      setName("Entity Wise Data Distribution");
     }
-    setChartInfo(values);
   };
 
   const handleCurrentChart = (value) => {
@@ -63,6 +59,14 @@ const Home = () => {
     if (id === record.length + 1) {
       setChartData([
         {
+          label: "Bar & Line Chart",
+          value: "barLineChart",
+        },
+      ]);
+      setCurrentChart("barLineChart");
+    } else {
+      setChartData([
+        {
           label: "Bar Chart",
           value: "barChart",
         },
@@ -70,11 +74,8 @@ const Home = () => {
           label: "Line Chart",
           value: "lineChart",
         },
-        {
-          label: "Bar & Line Chart",
-          value: "barLineChart",
-        },
       ]);
+      setCurrentChart("barChart");
     }
   }, [id]);
 
@@ -86,6 +87,7 @@ const Home = () => {
         <Select
           defaultValue={chartData[0].value}
           className={style.select}
+          value={currentChart}
           onChange={handleCurrentChart}
         >
           {chartData.map((data, idx) => {
@@ -117,10 +119,13 @@ const Home = () => {
         </Select>
       </div>
       {id < record.length ? (
-        <Chart type={currentChart} data={record[id]} />
+        <ChartCom type={currentChart} data={record[id]} />
       ) : null}
       {id === record.length ? (
         <BarChart type={currentChart} data={record} />
+      ) : null}
+      {id === record.length + 1 ? (
+        <ChartCom allData={true} type={currentChart} data={record} />
       ) : null}
     </div>
   );

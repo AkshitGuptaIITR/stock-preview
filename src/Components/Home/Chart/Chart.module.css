@@ -1,0 +1,13 @@
+.lowerBody {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 24px 0;
+}
+
+.lowerBody label {
+  margin-right: 24px;
+  font-weight: 500;
+  font-size: 18px;
+}
