@@ -4,24 +4,28 @@ import {
   CategoryScale,
   LinearScale,
   BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import { get } from "lodash";
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
   BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend
 );
 
 const BarChart = (props) => {
-  const { data } = props;
+  const { data, type } = props;
   const [chartData, setChartData] = useState({ labels: [], datasets: [] });
   const [loading, setLoading] = useState(false);
 
@@ -38,6 +42,7 @@ const BarChart = (props) => {
         {
           label: "Strike",
           data: chartValues.map((data) => data),
+          borderColor: ["rgba(0, 0, 0, 0.5)"],
           backgroundColor: [
             "rgba(255, 99, 132, 0.8)",
             "rgba(54, 162, 235, 0.8)",
@@ -66,8 +71,23 @@ const BarChart = (props) => {
     },
   };
 
+  // const lineOptions = {
+  //   responsive: true,
+  // plugins: {
+  //   legend: {
+  //     position: 'top',
+  //   },
+  //   title: {
+  //     display: true,
+  //     text: 'Chart.js Line Chart',
+  //   },
+  // },
+  // }
+
   return loading ? (
     <></>
+  ) : type === "lineChart" ? (
+    <Line options={options} data={chartData} />
   ) : (
     <Bar style={{ fontSize: "28px" }} options={options} data={chartData} />
   );

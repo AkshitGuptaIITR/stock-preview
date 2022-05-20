@@ -6,6 +6,7 @@ import style from "./Home.module.css";
 import "antd/dist/antd.css";
 import Loader from "../../sharedComponents/Loader/Loader";
 import BarChart from "./BarChart/BarChart";
+import Chart from "./Chart/Chart";
 const { Option } = Select;
 
 const Home = () => {
@@ -18,8 +19,12 @@ const Home = () => {
       label: "Bar Chart",
       value: "barChart",
     },
+    {
+      label: "Line Chart",
+      value: "lineChart",
+    },
   ]);
-  const [currentChart, setCurrentChart] = useState("");
+  const [currentChart, setCurrentChart] = useState("barChart");
   const [chartInfo, setChartInfo] = useState([]);
 
   const handleSelection = (value) => {
@@ -54,6 +59,25 @@ const Home = () => {
     })();
   }, []);
 
+  useEffect(() => {
+    if (id === record.length + 1) {
+      setChartData([
+        {
+          label: "Bar Chart",
+          value: "barChart",
+        },
+        {
+          label: "Line Chart",
+          value: "lineChart",
+        },
+        {
+          label: "Bar & Line Chart",
+          value: "barLineChart",
+        },
+      ]);
+    }
+  }, [id]);
+
   return loading ? (
     <Loader />
   ) : (
@@ -87,10 +111,17 @@ const Home = () => {
               </Option>
             );
           })}
-          <Option value={record.length + 1}>All Strike Prices</Option>
+          <Option value={record.length + 1}>
+            Entity Wise Data Distribution
+          </Option>
         </Select>
       </div>
-      {id === record.length ? <BarChart data={record} /> : null}
+      {id < record.length ? (
+        <Chart type={currentChart} data={record[id]} />
+      ) : null}
+      {id === record.length ? (
+        <BarChart type={currentChart} data={record} />
+      ) : null}
     </div>
   );
 };
