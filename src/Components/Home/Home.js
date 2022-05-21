@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Select } from "antd";
 import axios from "axios";
 import { get } from "lodash";
@@ -47,6 +48,7 @@ const Home = () => {
           "https://api.jsonbin.io/v3/b/6280966238be296761059394"
         );
         setRecord(get(data, "data.record"));
+        setId(record.length);
         setLoading(false);
       } catch (err) {
         setLoading(false);
@@ -84,6 +86,7 @@ const Home = () => {
   ) : (
     <div className={style.home}>
       <div className={style.rowSpace}>
+        <h2 className={style.mobile}>{get(record[id], "symbol", name)}</h2>
         <Select
           defaultValue={chartData[0].value}
           className={style.select}
@@ -98,9 +101,9 @@ const Home = () => {
             );
           })}
         </Select>
-        <h2> {get(record[id], "symbol", name)}</h2>
+        <h2 className={style.desktop}> {get(record[id], "symbol", name)}</h2>
         <Select
-          defaultValue={record.length}
+          // defaultValue={record.length}
           value={id}
           onChange={handleSelection}
           className={style.select}

@@ -1,22 +1,49 @@
-.home{
+.home {
   display: flex;
   flex-direction: column;
   padding: 80px 8%;
 }
 
-.home h2{
+.home h2 {
   font-size: 1.5rem;
 }
 
-.rowSpace{
+.rowSpace {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 24px;
 }
 
-.select{
+.select {
   width: 200px !important;
   display: flex !important;
 }
 
+.mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 758px) {
+  .rowSpace {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mobile {
+    display: flex;
+  }
+
+  .home h2 {
+    font-size: 1.2rem;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .rowSpace .select {
+    margin: 6px 0;
+  }
+}

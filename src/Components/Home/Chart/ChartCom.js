@@ -13,7 +13,7 @@ import {
 import { Bar, Chart, Line } from "react-chartjs-2";
 import { get } from "lodash";
 import style from "./Chart.module.css";
-import { Radio, Select } from "antd";
+import {  Select } from "antd";
 import { average } from "../../../commonFunctions/average";
 
 ChartJS.register(
