@@ -13,7 +13,7 @@ import {
 import { Bar, Chart, Line } from "react-chartjs-2";
 import { get } from "lodash";
 import style from "./Chart.module.css";
-import {  Select } from "antd";
+import { Select } from "antd";
 import { average } from "../../../commonFunctions/average";
 
 ChartJS.register(
@@ -45,8 +45,9 @@ const ChartCom = (props) => {
         position: "bottom",
       },
       title: {
-        display: false,
-        text: "Chart.js Bar Chart - Stacked",
+        display: true,
+        position: "bottom",
+        text: `OI and OIChange of ${get(data, "symbol")}`,
       },
     },
     responsive: true,
@@ -156,7 +157,23 @@ const ChartCom = (props) => {
     <>
       {allData ? (
         <>
-          <Chart type="bar" data={chartData} />
+          <Chart
+            type="bar"
+            options={{
+              plugins: {
+                title: {
+                  display: true,
+                  position: "bottom",
+                  text: `${
+                    selectedDate === "averageData"
+                      ? "Average of OI and OIChange with strike price."
+                      : `${selectedDate} data of OI and OIChange with strike price.`
+                  }`,
+                },
+              },
+            }}
+            data={chartData}
+          />
           <div className={style.lowerBody}>
             <label htmlFor="">Select Date:</label>
             <Select

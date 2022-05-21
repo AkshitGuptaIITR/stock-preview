@@ -66,6 +66,11 @@ const BarChart = (props) => {
         position: "bottom",
         display: false,
       },
+      title: {
+        display: true,
+        position: "bottom",
+        text: `Strike Price`,
+      },
     },
     font: {
       size: "20px",
